@@ -1,0 +1,10 @@
+- name: install nginx
+  include_role:
+    name: exphost.helm_app
+  vars:
+    chart_app:
+      name: "{{ app.value.nginx.configs.name| default(app.key) }}"
+      chart: "{{ app.value.nginx.configs.chart }}"
+      cluster: "{{ app.value.nginx.configs.cluster }}"
+      namespace: "{{ app.value.nginx.configs.namespace }}"
+      chart_values: "{{ app.value.nginx.configs.chart_values | default({}) }}"

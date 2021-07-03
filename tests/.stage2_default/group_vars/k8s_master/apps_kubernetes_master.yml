@@ -1,0 +1,26 @@
+apps_kube_master:
+  kube_master:
+    priority: 6
+    kubernetes:
+      type: exphost.kubernetes
+      enabled: True
+      configs:
+        type: master
+        cluster_name: pierwszy
+        features:
+          longhorn:
+            enabled: false
+          prometheus:
+            enabled: false
+      info:
+        helm_path: /root/helm/linux-amd64/helm
+        kubeconfig: /etc/rancher/rke2/rke2.yaml
+
+  kube_master_apps:
+    priority: 8
+    kubernetes:
+      type: exphost.kubernetes
+      enabled: True
+      configs:
+        type: apps
+        cluster_name: pierwszy

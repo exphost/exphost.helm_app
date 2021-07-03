@@ -1,0 +1,22 @@
+apps_consul_client:
+  consul_client:
+    priority: 5
+    endpoints:
+      dns:
+        port: 4443
+    consul:
+      type: exphost.consul
+      enabled: True
+      user:
+        uid: 503
+      configs:
+        version: "1.9.0"
+        server: False
+        ports:
+          http: 4440
+          serf_lan: 4441
+          serf_wan: 4442
+          dns: 4443
+        addresses:
+          client: "0.0.0.0"
+          cluster: "0.0.0.0"

@@ -1,0 +1,14 @@
+apps_nginx:
+  nginx:
+    nginx:
+      type: dummy
+      enabled: true
+      configs:
+        chart: "https://charts.bitnami.com/bitnami/nginx-9.3.3.tgz"
+        cluster: pierwszy
+        namespace: simple-nginx
+        name: www1
+        chart_values:
+          service:
+            type: ClusterIP
+            port: 8090

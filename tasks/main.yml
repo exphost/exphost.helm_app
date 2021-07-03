@@ -1,0 +1,24 @@
+---
+- name: debug
+  debug:
+    msg: "jeste helm_appe"
+
+- name: debug
+  debug:
+    msg: "{{ chart_app }}"
+
+- name: install app
+  vars:
+    _kube_master: "{{ hostvars|dict2items|get_kubernetes_master(chart_app.cluster) }}"
+  community.kubernetes.helm:
+    name: "{{ chart_app.name }}"
+    chart_ref: "{{ chart_app.chart }}"
+    release_namespace: "{{ chart_app.namespace }}"
+    create_namespace: true
+    values: "{{ chart_app.chart_values }}"
+    wait: true
+    binary_path: "{{ _kube_master['kubernetes']['info']['helm_path'] }}"
+    kubeconfig: "{{ _kube_master['kubernetes']['info']['kubeconfig'] }}"
+  become: true
+  become_user: root
+  run_once: true

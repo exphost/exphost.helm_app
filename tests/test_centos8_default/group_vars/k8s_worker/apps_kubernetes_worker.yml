@@ -1,0 +1,11 @@
+apps_kube_worker:
+  kube_worker:
+    priority: 7
+    kubernetes:
+      type: exphost.kubernetes
+      enabled: True
+      configs:
+        type: worker
+        cluster_name: pierwszy
+        labels:
+          - "longhorn=yes"
